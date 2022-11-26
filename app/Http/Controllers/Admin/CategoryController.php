@@ -38,14 +38,20 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCategoryRequest $request)
-    {
+    { 
+        $data = []; 
+        foreach($request->safe()->categories as $index =>$value) {
+             $data[$index]['name'] = $value['name'];
+             $data[$index]['slug'] = str_replace(' ' , '-' , $value['name']);
+        }
         DB::beginTransaction();
         try {
-            Category::upsert($request->safe()->categories, 'name');
+            Category::upsert($data, ['name','slug']);
             DB::commit();
             return  isset($request->create) ?  redirect()->route('categories.index')->with(['success' => 'تمت العمليه بنجاح']) :
                 redirect()->back()->with(['success' => 'تمت العمليه بنجاح']);
         } catch (\Exception $e) {
+            dd($e->getMessage());
             DB::rollBack();
             return redirect()->back()->with(['error' => 'فشلت العمليه ']);
         }
@@ -74,11 +80,15 @@ class CategoryController extends Controller
     {
         DB::beginTransaction();
         try {
-            $category->update($request->validated());
+            $data = [];
+            $data['name'] = $request->safe()->name;
+            $data['slug'] = str_replace(' ' , '-' , $data['name']);
+            $category->update($data);
             DB::commit();
             return
                 redirect()->route('categories.index')->with(['success' => 'تمت العمليه بنجاح']);
         } catch (\Exception $e) {
+
             DB::rollBack();
             return redirect()->back()->with(['error' => 'فشلت العمليه ']);
         }

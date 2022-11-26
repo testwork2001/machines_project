@@ -4,7 +4,7 @@
 
 @endsection
 @section('content')
-    <div class="col-11 col-lg-8 mx-auto  mt-5 px-2">
+    <div class="col-11 col-lg-10 mx-auto  mt-5 px-2">
         <div class=" text-right p-2 row justify-content-around " dir="rtl">
             <div class="col-11 col-lg-6 card mx-auto my-2">
                 <h3 class="card-title px-3 pt-3 text-danger">
@@ -31,13 +31,16 @@
                     </table>
                 </div>
             </div>
-            <div class="col-11 col-lg-6 text-center mx-auto my-2">
+            <div class="col-12 col-lg-6 text-center mx-auto my-2 row justify-content-between">
                 <img src="{{ asset($product->getFirstMediaUrl('products')) }}" alt=""
-                    style="width:100%; border-radius:10px" class="my-1">
+                    style="width:80%; border-radius:10px;max-height:400px" class="my-1" id='myimage'>
+                <div style="width: 18%">
                     @foreach ($product->getMedia('products') as $media)
-                    <img src="{{ asset($media->getUrl()) }}" alt=""
-                    style="width:100%; border-radius:10px" class="my-1">
-                @endforeach
+                        <img src="{{ asset($media->getUrl()) }}" alt="" style="width:100%; border-radius:10px ;cursor: pointer"
+                            class="my-1 convert">
+                    @endforeach
+                </div>
+
             </div>
         </div>
     </div>
@@ -95,6 +98,11 @@
             $('#form-box').removeClass('d-none')
             $(this).removeClass('btn-primary')
             $(this).addClass('btn-danger')
+        })
+    </script>
+    <script>
+        $('.convert').on('click' , function(){
+            document.getElementById('myimage').setAttribute('src' , this.src)
         })
     </script>
 @endsection

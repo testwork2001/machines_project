@@ -205,7 +205,8 @@ return [
         'categories' => 'الاقسام',
         'category_id' => 'القسم',
         'categories.*.name' => "اسم القسم",
-        "images.*.file_name"=>'ملف الصوره'
+        "images.*.file_name"=>'ملف الصوره',
+        'message'=>'الرساله'
 
 
 

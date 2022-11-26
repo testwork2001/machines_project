@@ -102,7 +102,7 @@
                                                 style="width: 250px;height:200px">
                                             <div class="form-group row text-center">
                     
-                                                <input type="checkbox" name="oldimages[{{ $index }}]['id']"
+                                                <input type="checkbox" name="oldimages[{{ $index }}][id]"
                                                     id="media{{ $index }}"class='w-100 p-5 my-2' value="{{$media->id}}" >
                                             </div>
                                         </div>
@@ -129,7 +129,7 @@
                                         </div>
                                         <div class="form-group clearfix mb-20">
                                             <input class="button" data-repeater-create type="button"
-                                                value="اضافه صفه " />
+                                                value="اضافه صوره " />
                                         </div>
                                     </div>
                             </section>

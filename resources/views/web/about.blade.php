@@ -58,7 +58,7 @@
                 <h5>اكتب استفسارك الان وسيقوم احد خبرائنا بالتواصل معك</h5>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-lg-5">
                     <div class="contact-info">
                         <h2 class="text-right">معلومات الاتصال لدينا</h2>
 
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-lg-6">
                     <div class="contact-form">
                         <div id="success"></div>
                         <form action='{{ route('help.store') }}' method="post">

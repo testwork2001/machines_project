@@ -20,11 +20,11 @@
                             <div class="blog-img">
                                 <a href=""><img src="{{ asset($product->getFirstMediaUrl('products'))}}" alt="Image"></a>
                                 <div class="show_detials">
-                                    <p><a href="{{route('details' , ['id'=>$product->id])}}" class="btn btn-danger "> عرض المزيد</a></p>
+                                    <p><a href="{{route('details' , ['id'=>$product->slug])}}" class="btn btn-danger "> عرض المزيد</a></p>
                                 </div>
                             </div>
                             <div class="blog-text text-right">
-                                <h3><a href="{{ route('details', $product->id) }}">{{ $product->name }}</a></h3>
+                                <h3><a href="{{ route('details', $product->slug) }}">{{ $product->name }}</a></h3>
                                 <p class="mt-0">
                                     {{ $product->description }}
                                 </p>

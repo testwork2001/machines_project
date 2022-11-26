@@ -68,12 +68,12 @@
                             <div class="blog-img">
                                 <a><img src="{{ getMediaUrl($product, 'products') }}" alt="Image"></a>
                                 <div class="show_detials">
-                                    <p><a href="{{ route('details', $product->id) }}" class="btn btn-danger "> عرض
+                                    <p><a href="{{ route('details', $product->slug) }}" class="btn btn-danger "> عرض
                                             المزيد</a></p>
                                 </div>
                             </div>
                             <div class="blog-text text-right">
-                                <h3><a href="{{ route('details', $product->id) }}">{{ $product->name }}</a></h3>
+                                <h3><a href="{{ route('details', $product->slug) }}">{{ $product->name }}</a></h3>
                                 <p style="padding-bottom:20px">
                                     {{ $product->description }}
 

@@ -21,7 +21,7 @@ use App\Http\Controllers\Web\ServiceController;
 */
 
 Route::get('/', HomeController::class)->name('home');
-Route::get('products/show/{category}/', [ProductController::class, 'show'])->name('products');
+Route::get('products/show/{slug}/', [ProductController::class, 'show'])->name('products');
 Route::get('products/details/{id}/', [ProductController::class, 'details'])->name('details');
 Route::post('products/inquiry/', [InquiryController::class, 'store'])->name('inquiry.store');
 Route::get('aboutus', AboutController::class)->name('about');

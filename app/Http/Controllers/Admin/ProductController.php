@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Spec;
 use App\Models\Product;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Product\StoreProductRequest;
@@ -45,7 +44,9 @@ class ProductController extends Controller
     {
         DB::beginTransaction();
         try {
-            $product = Product::create($request->safe()->except('image', 'specs'));
+            $data = $request->safe()->except('image', 'specs');
+            $data['slug'] = str_replace(' ', '-', $request->safe()->name);
+            $product = Product::create($data);
             $product->storeSpecs($request->safe()->specs);
             foreach ($request->safe()->images as $image) {
                 $product->addMedia($image['file_name'])->toMediaCollection('products');
@@ -54,7 +55,6 @@ class ProductController extends Controller
             return  isset($request->create) ?  redirect()->route('products.index')->with(['success' => 'تمت العمليه بنجاح']) :
                 redirect()->back()->with(['success' => 'تمت العمليه بنجاح']);
         } catch (\Exception $e) {
-            dd($e->getMessage());
             DB::rollBack();
             return redirect()->back()->with(['error' => 'فشلت العمليه ']);
         }
@@ -83,12 +83,20 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        // dd($product);
         DB::beginTransaction();
         try {
-            $product->update($request->validated());
+            $data = $request->validated();
+            $data['slug'] = str_replace(' ', '-', $request->safe()->name);
+            $product->update($data);
             $product->specs()->detach($request->product_id);
             $product->storeSpecs($request->safe()->specs);
+            $media = $product->getMedia('products');
+            for ($i = 0; $i < count($media); $i++) {
+                $id = $request->oldimages[$i]['id'] ?? null;
+                if ($media[$i]->id == $id) {
+                    $media[$i]->delete();
+                }
+            }
             if (isset($request->safe()->images[0])) {
                 foreach ($request->safe()->images as $image) {
                     $product->addMedia($image['file_name'])->toMediaCollection('products');

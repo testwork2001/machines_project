@@ -5,27 +5,41 @@ namespace App\Http\Controllers\Web;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
-    public function show($id)
+    public function show(string $slug)
     {
-        $category = Category::findOrFail($id);
-        $products = Product::where('status', '1')->where('category_id' , $category->id)->withCount('inquiries')->limit(20)->get();
-        $categories  = Category::all();
-
-        return view('web.products', compact('products', 'categories'));
+        DB::beginTransaction();
+        try {
+            $category = Category::where('slug', $slug)->first();
+            $products = Product::where('status', '1')->where('category_id', $category->id)->withCount('inquiries')->limit(20)->get();
+            $categories  = Category::all();
+            DB::commit();
+            return view('web.products', compact('products', 'categories'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            abort(404);
+        }
     }
 
-    public function details(int $id, Request $request)
+  
+    public function details(string $slug)
     {
-        $product = Product::findOrFail($id);
-        $specs = Product::where('id', $product->id)->with('specs')->get()[0]->specs;
-        $categories  = Category::all();
-        return view('web.details', compact(['product', 'specs' , 'categories']));
+        DB::beginTransaction();
+        try {
+            $product = Product::where('slug', $slug)->first();
+            $specs = Product::where('id', $product->id)->with('specs')->get()[0]->specs;
+            $categories  = Category::all();
+            DB::commit();
+            return view('web.details', compact(['product', 'specs', 'categories']));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            abort(404);
+        }
     }
-
     public function search(Request $request)
     {
         $request->validate([
@@ -41,11 +55,11 @@ class ProductController extends Controller
                 <div class=\"blog-img\">
                     <a ><img src=\"$img\" alt=\"Image\"></a>
                     <div class=\"show_detials\">
-                        <p><a href=" .  route('details', $product->id) . " class=\"btn btn-danger \"> عرض المزيد</a></p>
+                        <p><a href=" .  route('details', $product->slug) . " class=\"btn btn-danger \"> عرض المزيد</a></p>
                     </div>
                 </div>
                 <div class=\"blog-text text-right\">
-                    <h3><a href=" .  route('details', $product->id) . "> $product->name </a></h3>
+                    <h3><a href=" .  route('details', $product->slug) . "> $product->name </a></h3>
                     <p>
                         $product->description
                     </p>
