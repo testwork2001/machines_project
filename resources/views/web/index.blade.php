@@ -66,10 +66,9 @@
                     <div class="col-lg-4 ">
                         <div class="blog-item">
                             <div class="blog-img">
-                                <a><img src="{{ getMediaUrl($product, 'products') }}" alt="Image"></a>
+                                <a href="{{route('details' , ['slug'=>$product->slug])}}"><img src="{{ asset($product->getFirstMediaUrl('products'))}}" alt="Image"></a>
                                 <div class="show_detials">
-                                    <p><a href="{{ route('details', $product->slug) }}" class="btn btn-danger "> عرض
-                                            المزيد</a></p>
+                                    <p><a href="{{route('details' , ['slug'=>$product->slug])}}" class="btn btn-danger "> عرض المزيد</a></p>
                                 </div>
                             </div>
                             <div class="blog-text text-right">
@@ -142,7 +141,7 @@
                             وفقًا لـ سياسة الخصوصية. ويمكنك إلغاء المدفوعات المتكررة في أي وقت.</p>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>

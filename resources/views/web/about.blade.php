@@ -88,7 +88,7 @@
                         <form action='{{ route('help.store') }}' method="post">
                             @csrf
                             <div class="control-group">
-                                <input type="text" class="form-control"placeholder="اسمك*" name="name" />
+                                <input type="text" class="form-control"placeholder="اسمك *" name="name" />
                                 <p class="help-block text-danger text-right">
                                     @error('name')
                                         {{ $message }}

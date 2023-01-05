@@ -18,9 +18,9 @@
                     <div class="col-lg-4 product-item">
                         <div class="blog-item">
                             <div class="blog-img">
-                                <a href=""><img src="{{ asset($product->getFirstMediaUrl('products'))}}" alt="Image"></a>
+                                <a href="{{route('details' , ['slug'=>$product->slug])}}"><img src="{{ asset($product->getFirstMediaUrl('products'))}}" alt="Image"></a>
                                 <div class="show_detials">
-                                    <p><a href="{{route('details' , ['id'=>$product->slug])}}" class="btn btn-danger "> عرض المزيد</a></p>
+                                    <p><a href="{{route('details' , ['slug'=>$product->slug])}}" class="btn btn-danger "> عرض المزيد</a></p>
                                 </div>
                             </div>
                             <div class="blog-text text-right">
