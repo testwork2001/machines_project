@@ -38,6 +38,12 @@
         .whatsapp-icon img {
             border-radius: 20px;
         }
+
+        @media (max-width:991px) {
+            .whatsapp-icon  {
+                display: none;
+            }
+        }
     </style>
     @yield('css')
 </head>
@@ -107,8 +113,8 @@
         @yield('content')
 
         <div class="whatsapp-icon text-right" dir="rtl">
-            <a href="https://wa.me/01005762305" target="_blank"><img src="{{ asset('web/img/whatsapp.png') }}"
-                    alt="" class="w-100 bg-light"></a>
+            <a href="https://web.whatsapp.com/send?phone=01005762305" target="_blank"><img
+                    src="{{ asset('web/img/whatsapp.png') }}" alt="" class="w-100 bg-light"></a>
         </div>
         <!-- Footer Start -->
         <div class="footer" dir="rtl">

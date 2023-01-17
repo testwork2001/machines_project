@@ -25,7 +25,7 @@ use App\Http\Controllers\Admin\helpController;
 
 require __DIR__ . '/auth.php';
 Route::middleware(['auth', 'adminverified'])->group(function () {
-    Route::get('/index', HomeController::class)->name('admin');
+    Route::get('/', HomeController::class)->name('admin');
     Route::resource('products', ProductController::class)->except('show');
     Route::resource('specs', SpecController::class)->except('show');
     Route::resource('inquiries', InquiryController::class)->except('show', 'store', 'create', 'edit', 'update');

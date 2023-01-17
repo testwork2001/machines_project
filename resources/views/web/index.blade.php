@@ -107,45 +107,4 @@
             </div>
         </div>
     </div>
-    <!-- Blog End -->
-
-    <!-- Service Start -->
-    <div class="service" dir="rtl">
-        <div class="container bg-light rounded p-2">
-            <div class="section-header text-center">
-                <p>خدمتنا</p>
-                <h2>ماذا نسطيع ان نقدم لعملائنا</h2>
-            </div>
-            <div class="row text-center justify-content-around">
-                <div class="col-11 col-md-5 col-xl-3 mx-2 my-2 rounded bg-white">
-                    <div class="service-item p-1">
-                        <i class="flaticon-car-wash-1"></i>
-                        <h3>الشركه العربيه لتجاره</h3>
-                        <p> بالنقر على الزرّ، فإنك توافق على شروط الخدمة. سنعالج بياناتك الشخصية لتلبية طلبك ولأغراض أخرى
-                            وفقًا لـ سياسة الخصوصية. ويمكنك إلغاء المدفوعات المتكررة في أي وقت.</p>
-                    </div>
-                </div>
-                <div class="col-11 col-md-5 col-xl-3 mx-2 my-2 rounded bg-white">
-                    <div class="service-item p-1">
-                        <i class="flaticon-car-wash"></i>
-                        <h3>الشركه العربيه لتجاره</h3>
-                        <p> بالنقر على الزرّ، فإنك توافق على شروط الخدمة. سنعالج بياناتك الشخصية لتلبية طلبك ولأغراض أخرى
-                            وفقًا لـ سياسة الخصوصية. ويمكنك إلغاء المدفوعات المتكررة في أي وقت.</p>
-                    </div>
-                </div>
-                <div class="col-11 col-md-5 col-xl-3 mx-2 my-2 rounded bg-white">
-                    <div class="service-item p-1">
-                        <i class="flaticon-vacuum-cleaner"></i>
-                        <h3>الشركه العربيه لتجاره</h3>
-                        <p> بالنقر على الزرّ، فإنك توافق على شروط الخدمة. سنعالج بياناتك الشخصية لتلبية طلبك ولأغراض أخرى
-                            وفقًا لـ سياسة الخصوصية. ويمكنك إلغاء المدفوعات المتكررة في أي وقت.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- Service End -->
-
-
 @endsection
